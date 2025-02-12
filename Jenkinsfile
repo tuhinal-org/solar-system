@@ -4,12 +4,9 @@ pipeline {
         nodejs 'nodejs-22-6-0' // Name from "Global Tool Configuration"
     }
     stages {
-        stage('VM Node Version') {
+        stage('Installing Dependecies') {
             steps {
-                sh '''
-                    node -v
-                    npm -v
-                '''
+                sh 'npm install --no-audit'
             }
         }
     }
