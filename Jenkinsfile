@@ -9,6 +9,9 @@ pipeline {
                 sh 'npm install --no-audit'
             }
         }
+
+        stage('Dependecy Scanning') {
+            parallel{
         stage('NPM Dependecy Audit') {
             steps {
                 sh '''
@@ -24,7 +27,9 @@ pipeline {
             --out \'./\'
             --format \'ALL\'
             --prettyPrint''', odcInstallation: 'OWASP-DeepCheck-12'
+            }
         }
-}
-    }
+        }
+     }
+  }
 }
