@@ -10,6 +10,14 @@ pipeline {
             }
         }
     }
+    stage('NPM Dependecy Audit') {
+        steps {
+            sh '''
+            npm audit --audit-level=critical
+            echo $?
+            '''
+        }
+     }
 
 
 //     stages {
@@ -35,12 +43,14 @@ pipeline {
 //             --scan \'./\'
 //             --out \'./\'
 //             --format \'ALL\'
-//             --prettyPrint''', odcInstallation: 'OWASP-DeepCheck-12'
+//             --prettyPrint''', odcInstallation: 'OWASP-DeepCheck-12-0-2'
 
-//             // dependencyCheckPublisher failedTotalCritical:1, pattern: 'dependency-check-report.xml', stopBuild: true
+//             dependencyCheckPublisher failedTotalCritical:1, pattern: 'dependency-check-report.xml', stopBuild: true
 //             }
 //            }
 //         }
 //      }
 //   }
+
+
 }
