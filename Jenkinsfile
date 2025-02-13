@@ -17,41 +17,41 @@ pipeline {
             '''
         }
      }
+        stage('OWASP Dependency Check') {
+        steps {
+            dependencyCheck additionalArguments: '''
+            --scan \'./\'
+            --out \'./\'
+            --format \'ALL\'
+            --prettyPrint''', odcInstallation: 'OWASP-DeepCheck-12-0-2'
+
+            // dependencyCheckPublisher failedTotalCritical:1, pattern: 'dependency-check-report.xml', stopBuild: true
+            }
+         }
 }
   
 
 
-//     stages {
-//         stage('Installing Dependecies') {
-//             steps {
-//                 sh 'npm install --no-audit'
-//             }
-//         }
+  /*   stages {
+        stage('Installing Dependecies') {
+            steps {
+                sh 'npm install --no-audit'
+            }
+        }
 
-//         stage('Dependecy Scanning') {
-//             parallel{
-//         stage('NPM Dependecy Audit') {
-//             steps {
-//                 sh '''
-//                   npm audit --audit-level=critical
-//                   echo $?
-//                 '''
-//             }
-//         }
-//         stage('OWASP Dependency Check') {
-//         steps {
-//             dependencyCheck additionalArguments: '''
-//             --scan \'./\'
-//             --out \'./\'
-//             --format \'ALL\'
-//             --prettyPrint''', odcInstallation: 'OWASP-DeepCheck-12-0-2'
-
-//             dependencyCheckPublisher failedTotalCritical:1, pattern: 'dependency-check-report.xml', stopBuild: true
-//             }
-//            }
-//         }
-//      }
-//   }
+        stage('Dependecy Scanning') {
+            parallel{
+        stage('NPM Dependecy Audit') {
+            steps {
+                sh '''
+                  npm audit --audit-level=critical
+                  echo $?
+                '''
+            }
+        }
+    }
+ }
+} */
 
 
 }
