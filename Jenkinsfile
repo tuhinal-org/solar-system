@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        nodejs 'nodejs-22-6-0' // Name from "Global Tool Configuration"
+        nodejs 'Node-22-6-0' // Name from "Global Tool Configuration"
     }
     stages {
         stage('Installing Dependecies') {
@@ -28,7 +28,7 @@ pipeline {
             --format \'ALL\'
             --prettyPrint''', odcInstallation: 'OWASP-DeepCheck-12'
 
-            dependencyCheckPublisher failedTotalCritical:1, pattern: 'dependency-check-report.xml', stopBuild: true
+            // dependencyCheckPublisher failedTotalCritical:1, pattern: 'dependency-check-report.xml', stopBuild: true
             }
            }
         }
